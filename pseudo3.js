@@ -26,14 +26,17 @@ $(document).ready(function(){
 
   var artistAlbumsURL;
 
-  // "Flush the Fashion" albumID for dev and testing
-  flushFashion = "2tivwwko3vqzzICWw3G9oB";
+  // Alice Cooper artistID for dev and testing
+  artistID = "3EhbVgyfGd7HkpsagwL9GS";
 
   var albumID;
   var albumURL;
   var albumName;
   var albumReleased;
   var albumPop;
+
+  // "Flush the Fashion" albumID for dev and testing
+  albumID = "2tivwwko3vqzzICWw3G9oB";
 
   var albumTracksURL;
 
@@ -44,7 +47,12 @@ $(document).ready(function(){
 
   var artistURL;
   // string for testing until I write function for getArtist
-	artistURL = "https://api.spotify.com/v1/artists/3EhbVgyfGd7HkpsagwL9GS";
+	// artistURL = "https://api.spotify.com/v1/artists/3EhbVgyfGd7HkpsagwL9GS";
+
+  function build_artistURL (artistID) {
+    artistURL = apiurl + "/v1/artists/" + artistID;
+    console.log(artistURL);
+  }
 
 	function getArtist(artistURL){
     $.getJSON(artistURL, function(json){
@@ -53,6 +61,38 @@ $(document).ready(function(){
       console.log(artistName + ' = ' + artistPop);
     });
   }
+
+  function build_artistAlbumsURL (artistID) {
+    artistAlbumsURL = apiurl + "/v1/artists/" + artistID + "/albums?offset=0&limit=50&album_type=album";
+  }
+
+  function getArtistAlbums (artistAlbumsURL){
+    // console.log(artistAlbumsURL);
+    $.getJSON(artistAlbumsURL, function(json){
+      $.each(json.items, function (key, val){
+        albumID = val.id;
+        // albumName = val.name;
+        // console.log(albumName + ' = ' + albumID);
+        build_albumURL (albumID);
+        getAlbum (albumURL);
+        build_albumTracksURL (albumID);
+        getAlbumTracks (albumTracksURL);
+      });
+    });
+  }
+
+  function build_albumURL (albumID) {
+    albumURL = apiurl + "/v1/albums/" + albumID;
+  }
+
+	function getAlbum (albumURL) {
+  	$.getJSON(albumURL, function(json){
+  		var albumName = json.name;
+  		var albumPop = json.popularity;
+  		var albumReleased = json.release_date;
+  		console.log(albumName + ' = ' + albumPop + ' = ' + albumReleased);
+    });
+	}
 
   function build_albumTracksURL (albumID) {
     albumTracksURL = apiurl + "/v1/albums/" + albumID + "/tracks?offset=0&limit=20&market=US";
@@ -86,20 +126,8 @@ $(document).ready(function(){
     });
   }
 
+  build_artistURL (artistID)
   getArtist(artistURL);
-
-  // build albumTracksURL using albumID when ready
-  build_albumTracksURL (flushFashion);
-
-  // get album tracks using string for URL
-  getAlbumTracks(albumTracksURL);
-
-  // build trackURL using trackID
-  // is getAlbumTracks doing this by itself? commenting out to confirm
-  // build_track_url(trackID);
-
-  // get track info
-  // is getAlbumTracks doing this by itself? commenting out to confirm
-  // getTrack (trackURL);
-
+  build_artistAlbumsURL(artistID);
+  getArtistAlbums (artistAlbumsURL)
 });
