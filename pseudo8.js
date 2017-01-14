@@ -125,14 +125,20 @@ function getSeveralAlbums (severalAlbumsURL) {
       divideCombineAlbumTracks (albumTracks);
       // if this works, code build_severalTracksURL and getSeveralTracks that loops through albumsTracksArrays
       // trying to empty arrays -- garbage clean up sort of
-      albumTracks = [];
-      albumTracks1 = [];
-      albumTracks2 = [];
-
+      // albumTracks = [];
+      // albumTracks1 = [];
+      // albumTracks2 = [];
+      emptyTracks ();
     });
     // console.log(albumLoop);
     // console.log(trackLoop);
   });
+}
+
+function emptyTracks (){
+  albumTracks = [];
+  albumTracks1 = [];
+  albumTracks2 = [];
 }
 
 function divideCombineAlbumTracks (albumTracks){
