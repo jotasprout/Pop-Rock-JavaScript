@@ -109,23 +109,22 @@ function getSeveralAlbums (severalAlbumsURL) {
   			trackID = track.id;
   			albumTracks.push(trackID);
   		});
-      // slice all items in albumTracks array then put as item into albumsTracksArrays
       divideCombineAlbumTracks (albumTracks);
       emptyTracks ();
     });
-    // code build_severalTracksURL
     build_albumTracksURL ();
     getSeveralTracks (albumTracksURL);
   });
 }
 
 function getSeveralTracks (albumTracksURL) {
-  // ALL THIS IS FROM ORIGINAL I COPIED -- CHANGE
   $.getJSON(albumTracksURL, function(json){
     $.each(json.tracks, function (trackIndex, track){
       trackName = track.name;
   		trackPop = track.popularity;
-  		console.log(albumReleased + ' = ' + albumName + ' = ' + trackName + ' = ' + trackPop);
+      var trackAlbumName = track.album.name;
+      // var trackAlbumID = track.album.id;
+  		console.log(trackAlbumName + ' = ' + trackName + ' = ' + trackPop);
     });
   });
 }
