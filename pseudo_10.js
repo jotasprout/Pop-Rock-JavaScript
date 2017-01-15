@@ -78,50 +78,25 @@ $(document).ready(function(){
         artistAlbums.push(albumID);
       });
 	  divideCombineAlbums (artistAlbums);
-    console.log(albumsArrays);
     // Eventually, the rest belongs in a loop iterating through albumsArrays
 	  artistAlbums2str = artistAlbums2.join();
 	  artistAlbums1str = artistAlbums1.join();
 	  build_severalAlbumsURL (artistAlbums1str);
-	  getSeveralAlbums (severalAlbumsURL);
+    getSeveralAlbums (severalAlbumsURL);
     });
     console.log(albumsTracksArrays);
   }
 
-/*
-// OLD version of divideCombineAlbums
-
-	function divideCombineAlbums (artistAlbums){
-		artistAlbums1 = artistAlbums.slice(0,19);
-		albumsArrays.push(artistAlbums1);
-		artistAlbums2 = artistAlbums.slice(19);
-		albumsArrays.push(artistAlbums2);
-	}
-
-
-// new version of divideCombineAlbums -- TO BE TESTED
-// first try it without the loop
 function divideCombineAlbums(artistAlbums){
-  var x = artistAlbums.length/20;
+  var artistAlbumsChunk;
+  var x = Math.ceil((artistAlbums.length)/20);
   var firstAlbum = 0;
-  var lastAlbum = firstAlbum + 19;
-  for (i=0; i<=x; i++){
+  for (i=0; i<x; i++){
+    var lastAlbum = firstAlbum + 19;
     artistAlbumsChunk = artistAlbums.slice(firstAlbum, lastAlbum);
     albumsArrays.push(artistAlbumsChunk);
     firstAlbum += 19;
   };
-}
-*/
-
-// trying new version without the loop
-function divideCombineAlbums(artistAlbums){
-  var firstAlbum = 0;
-  var lastAlbum = firstAlbum + 19;
-  artistAlbums1 = artistAlbums.slice(firstAlbum, lastAlbum);
-  albumsArrays.push(artistAlbums1);
-  firstAlbum += 19;
-  artistAlbums2 = artistAlbums.slice(firstAlbum);
-  albumsArrays.push(artistAlbums2);
 }
 
   function build_severalAlbumsURL (albumsString) {
