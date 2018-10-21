@@ -1,0 +1,23 @@
+{
+  "name": "rockinJS",
+  "version": "1.0.0",
+  "description": "Uses Spotify API to get data about artists, their albums, and those albums' songs to store in a MySQL database and track popularity over time as well as comparing popularity to similar data from other artists/albums/songs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jotasprout/rockinJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jotasprout/rockinJS/issues"
+  },
+  "homepage": "https://github.com/jotasprout/rockinJS#readme",
+  "devDependencies": {
+    "mysql": "^2.16.0"
+  }
+}
