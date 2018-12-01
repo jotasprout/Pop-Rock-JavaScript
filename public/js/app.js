@@ -1,4 +1,4 @@
-import * as db from 'secrets/db.js';
+import * as db from 'server/db.js';
 
 connection.connect((err) => {
     if (err) throw err;

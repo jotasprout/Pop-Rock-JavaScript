@@ -1,0 +1,18 @@
+{
+    "short_name": "Pop Rock",
+    "name": "Pop Rock",
+    "description": "Spotify statistics and data visualization for artists, albums, and tracks",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "/imgs/app-icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "imgs/app-icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
