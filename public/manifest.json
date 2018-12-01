@@ -14,5 +14,7 @@
             "type": "image/png",
             "sizes": "512x512"
         }
-    ]
+    ],
+    "background_color": "fa11ed",
+    "start_url": "/?utm_source=pwa"
 }
